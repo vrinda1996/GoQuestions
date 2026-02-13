@@ -1,0 +1,16 @@
+func letterCombinations(digits string) []string {
+    var res []string
+    strs := []string{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
+    backtrack(&res,strs,"", digits, 0)
+    return res
+}
+
+func backtrack(res *[]string, strs []string, temp, digits string, index int){
+    if len(temp) == len(digits) {
+        *res = append(*res,temp)
+        return
+    }
+    for _, ch := range strs[digits[index] - '2']{
+        backtrack(res, strs, temp + string(ch) ,digits,index+1)
+    }
+}
